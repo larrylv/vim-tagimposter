@@ -8,10 +8,9 @@
 " symbol names.
 
 function! tagimposter#setup()
-    if exists("g:tagimposter_has_hookedup_tagfile")
+    if stridx(&tags, g:tagimposter_tagfile) >= 0
         return
     endif 
-    let g:tagimposter_has_hookedup_tagfile = 1
 
     let tagfolder = expand(fnamemodify(g:tagimposter_tagfile, ":h"))
     if filewritable(tagfolder) == 0 && exists("*mkdir")
