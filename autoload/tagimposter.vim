@@ -28,7 +28,7 @@ function! tagimposter#pushtag(symbol)
 
     let symbol = g:tagimposter_symbolprefix . a:symbol
     " Tags are a symbol, a file, and a search expression.
-    let tag_str = printf("%s\t%s\t/^%s$/;", symbol, expand("%:p"), getline('.'))
+    let tag_str = printf("%s\t%s\t/^%s$/;", symbol, expand("%:p"), substitute(getline('.'), '\/', '\\/', 'g'))
     let success = writefile([tag_str], tagfile, "S")
     if success >= 0
         exec 'tjump '. symbol
