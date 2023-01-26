@@ -31,7 +31,7 @@ function! tagimposter#pushtag(symbol)
     let tag_str = printf("%s\t%s\t/^%s$/;", symbol, expand("%:p"), substitute(getline('.'), '\/', '\\/', 'g'))
     let success = writefile([tag_str], tagfile, "S")
     if success >= 0
-        exec 'tjump '. symbol
+        silent! exec 'tjump '. symbol
     else
         echoerr 'Failed to write to '. tagfile
     endif
